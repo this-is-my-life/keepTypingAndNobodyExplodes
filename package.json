@@ -1,0 +1,39 @@
+{
+  "name": "ktane",
+  "version": "0.0.1",
+  "description": "Keep Typing and Nobody Explodes",
+  "main": "keepTypingBot.js",
+  "engines": {
+    "node": "8.x"
+  },
+  "scripts": {
+    "test": "node keepTypingBot.js",
+    "start": "node keepTypingBot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PMHStudio/keepTypingAndNobodyExplodes.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "PMH Studio / PMH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PMHStudio/keepTypingAndNobodyExplodes/issues"
+  },
+  "homepage": "https://github.com/PMHStudio/keepTypingAndNobodyExplodes#readme",
+  "dependencies": {
+    "bufferutil": "^3.0.3",
+    "discord.js": "^11.4.2",
+    "erlpack": "github:discordapp/erlpack",
+    "libsodium-wrappers": "^0.7.4",
+    "node-opus": "^0.2.9",
+    "opusscript": "0.0.6",
+    "random-hex-color": "^1.0.1",
+    "randomstring": "^1.1.5",
+    "sodium": "^2.0.3",
+    "uws": "^9.148.0"
+  }
+}
