@@ -46,7 +46,7 @@ module.exports.run = (bot, input) => {
     .setTitle('Wire Generated')
     .setColor(randomHexColor())
     .setThumbnail('https://cdn.discordapp.com/attachments/530043751901429762/537827105371586560/WireComponent.png')
-    .setDescription('Wires are the lifeblood of electronics! Wait, no, electricity is the lifeblood.\nWires are more like the arteries. The veins? No matter...')
+    .setDescription('How To Defuse Wires? [Click Here!](http://www.bombmanual.com/manual/1/pdf/Bomb-Defusal-Manual_1.pdf)\n\nWires are the lifeblood of electronics! Wait, no, electricity is the lifeblood.\nWires are more like the arteries. The veins? No matter...')
     .addBlankField(false)
     .addField("Bomb's Serial is...", serialNumber, true)
     .addField('1st Wire is...', wires[0], true)
