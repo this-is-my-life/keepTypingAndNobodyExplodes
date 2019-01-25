@@ -1,1 +1,1 @@
-ktane: node keepTypingBot.js
+worker: node keepTypingBot.js
