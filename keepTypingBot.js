@@ -35,9 +35,11 @@ bot.on('message', (input) => {
   if (input.author.id === bot.user.id) { return }
 
   // Message Caculation.
-  let msgArray = input.content.split(' ')
-  let msgWant = msgArray[0].slice('b!'.length)
-  let msgRunFile = bot.commands.get(msgWant)
-  if (!msgRunFile) { return }
-  msgRunFile.run(bot, input)
+  let msgArray = input.content.split('!')
+  if (msgArray[0] === 'b' && msgArray[1]) {
+    let msgWant = msgArray[1]
+    let msgRunFile = bot.commands.get(msgWant)
+    if (!msgRunFile) { return }
+    msgRunFile.run(bot, input)
+  }
 })
