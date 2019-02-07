@@ -42,23 +42,20 @@ module.exports.run = (bot, input) => {
     console.log('Wire ' + tempWireCount + ' is ' + wires[tempWireCount] + '.')
   }
   let wireEmbed = new discord.RichEmbed()
-    .setAuthor(input.author.username + ' is Defusing Wires', input.author.avatarURL)
+    .setAuthor(input.author.username + '는 폭탄(와이어 모듈)을 해체중입니다', input.author.avatarURL)
     .setTitle('Wire Generated')
     .setColor(randomHexColor())
     .setThumbnail('https://cdn.discordapp.com/attachments/530043751901429762/537827105371586560/WireComponent.png')
-    .setDescription('How To Defuse Wires? [Click Here!](http://www.bombmanual.com/manual/1/pdf/Bomb-Defusal-Manual_1.pdf)\n\nWires are the lifeblood of electronics! Wait, no, electricity is the lifeblood.\nWires are more like the arteries. The veins? No matter...')
+    .setDescription('음? 어케 하는건지 모르겠다구요? [여길 눌러요!](http://uminz.tistory.com/attachment/cfile26.uf@236F35485633028A031ABB.pdf)\n\nWire는 전기장치의 생명선이지!! 자..잠간.. 아니지...전기가 생면선이지..?\nWire는 정맥에 가깝지. 아니면 동맥? ..뷁! 알깨뭐야!')
     .addBlankField(false)
-    .addField("Bomb's Serial is...", serialNumber, true)
-    .addField('1st Wire is...', wires[0], true)
-    .addField('2nd Wire is...', wires[1], true)
-    .addField('3rd Wire is...', wires[2], true)
-  for (let tempWireCount = 3; tempWireCount !== WireCount; tempWireCount++) {
-    wireEmbed.addField((tempWireCount + 1) + 'th Wire is...', wires[tempWireCount], true)
+    .addField('폭탄의 시리얼번호', serialNumber, true)
+  for (let tempWireCount = 0; tempWireCount !== WireCount; tempWireCount++) {
+    wireEmbed.addField((tempWireCount + 1) + '번째 선은...', wires[tempWireCount], true)
   }
-  wireEmbed.setFooter('Which one shuld we cut?')
+  wireEmbed.setFooter('... 뭘 짤라야하지?')
     .setTimestamp()
   input.channel.send(wireEmbed).then((emb) => {
-    input.channel.send("Type 'cut!wire <number>' to cut it | 30 seconds left").then((q) => {
+    input.channel.send("'cut!wire <짜르고 싶은 선>'을 입력해 짜릅니다 | 30초 남음").then((q) => {
       const filter = (m) => m.author.id === input.author.id
       input.channel.awaitMessages(filter, {
         'max': 1,
@@ -66,7 +63,7 @@ module.exports.run = (bot, input) => {
       }).then((collected) => {
         if (!collected.first()) {
           let explodeByTimeout = new discord.RichEmbed()
-            .setTitle('Exploded By __You are lazy__')
+            .setTitle('째깍째깍... 펑!... 너무 느린데요!')
             .setColor(0xff0000)
             .setImage('https://cdn.discordapp.com/attachments/530043751901429762/537966446626603049/BotProfile.jpg')
           q.delete()
@@ -130,23 +127,23 @@ module.exports.run = (bot, input) => {
           if ((collected.first().content.split(' ')[1]) === (cutWire + 1).toString()) {
             let defused = new discord.RichEmbed()
               .setAuthor(input.author.username + ' is Defused Wires', input.author.avatarURL)
-              .setTitle('You are Intelligent!')
+              .setTitle(`딸깍! 경쾌한 소리와 함깨, 당신은 ${input.guild.name}를 구했다...`)
               .setColor(0x0000ff)
               .setImage('http://www.bombmanual.com/manual/1/html/img/ktane-logo.png')
             q.delete()
             emb.edit(defused)
           } else {
             let explodeByWrongAwnser = new discord.RichEmbed()
-              .setTitle('Exploded By Your Mistake!')
+              .setTitle('퍼퍼퍼퍼ㅓ엉! 어이쿠 손이 미끄러졌네?')
               .setColor(0xff0000)
               .setImage('https://cdn.discordapp.com/attachments/530043751901429762/537966446626603049/BotProfile.jpg')
-              .setDescription('The correct Awnser is ' + (cutWire + 1) + '!')
+              .setDescription('정답은? ' + (cutWire + 1) + '! (분발합시다...)')
             q.delete()
             emb.edit(explodeByWrongAwnser)
           }
         } else {
           let explodeByAnothorMessage = new discord.RichEmbed()
-            .setTitle('Exploded By Your Typing Mistake')
+            .setTitle('안이... 글자 모릅니까? "cut!wire <짜르고 싶은 선>"치라고...')
             .setColor(0xff0000)
             .setImage('https://cdn.discordapp.com/attachments/530043751901429762/537966446626603049/BotProfile.jpg')
           q.delete()
@@ -160,4 +157,4 @@ module.exports.run = (bot, input) => {
 function isEven (x) { return (x % 2) === 0 }
 function isOdd (x) { return !isEven(x) }
 
-module.exports.alias = ['wire', 'w', 'wires']
+module.exports.alias = ['선들', 'ㅇ', '와이어']
