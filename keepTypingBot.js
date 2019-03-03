@@ -11,7 +11,6 @@ const fs = require('fs')
 const botToken = process.env.Token
 const bot = new discord.Client()
 
-bot.login(botToken)
 bot.commands = new discord.Collection()
 
 fs.readdir('./modules', (err, files) => {
@@ -26,20 +25,26 @@ fs.readdir('./modules', (err, files) => {
   })
 })
 
-bot.on('ready', () => {
-  console.log(bot.user.username + ' is Booted!')
-  bot.user.setActivity("Dev | Type 'b!wire' To Defuse Wires")
-})
+if (!process.env.CI) {
+  bot.login(botToken)
 
-bot.on('message', (input) => {
-  if (input.author.id === bot.user.id) { return }
+  bot.on('ready', () => {
+    console.log(bot.user.username + ' is Booted!')
+    bot.user.setActivity("Dev | Type 'b!wire' To Defuse Wires")
+  })
 
-  // Message Caculation.
-  let msgArray = input.content.split('!')
-  if (msgArray[0] === 'b' && msgArray[1]) {
-    let msgWant = msgArray[1]
-    let msgRunFile = bot.commands.get(msgWant)
-    if (!msgRunFile) { return }
-    msgRunFile.run(bot, input)
-  }
-})
+  bot.on('message', (input) => {
+    if (input.author.id === bot.user.id) { return }
+
+    // Message Caculation.
+    let msgArray = input.content.split('!')
+    if (msgArray[0] === 'b' && msgArray[1]) {
+      let msgWant = msgArray[1]
+      let msgRunFile = bot.commands.get(msgWant)
+      if (!msgRunFile) { return }
+      msgRunFile.run(bot, input)
+    }
+  })
+} else {
+  console.log('ktane Circle CI Test Complete')
+}
