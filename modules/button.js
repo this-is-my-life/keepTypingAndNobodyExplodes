@@ -36,7 +36,8 @@ module.exports.run = (bot, input) => {
     .setDescription('How To Defuse Button? [Click Here!](http://www.bombmanual.com/manual/1/pdf/Bomb-Defusal-Manual_1.pdf)\n\nYou might think that a button telling you to press it is pretty straight forward.\nThat’s the kind of thinking that gets people exploded.')
     .addBlankField(false)
     .addField('Button Color: ' + buttonColor)
-  input.channel.send('테스트중입니다\n' + buttonEmbed)
+  input.channel.send('테스트중입니다\n')
+  input.channel.send(buttonEmbed)
 }
 
 module.exports.alias = ['button', 'b', 'buttons']
